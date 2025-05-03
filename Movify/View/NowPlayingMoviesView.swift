@@ -1,5 +1,5 @@
 //
-//  TrendingMovieView.swift
+//  NowPlayingMoviesView.swift
 //  Movify
 //
 //  Created by Gaurav Kumar on 04/05/25.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct TrendingMoviesView: View {
-    @StateObject var viewModel: TrendingMoviesViewModel = .init()
+struct NowPlayingMoviesView: View {
+    @StateObject var viewModel: NowPlayingMoviesViewModel = .init()
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,7 +16,7 @@ struct TrendingMoviesView: View {
             switch viewModel.loadingState {
             case .idle:
                 Color.white.onAppear {
-                    viewModel.getTrendingMovies()
+                    viewModel.getNowPlayingMovies()
                 }
             case .loading:
                 LoadingView()
@@ -29,7 +29,7 @@ struct TrendingMoviesView: View {
     }
     
     var headerView: some View {
-        Text("Trending Movies")
+        Text("Now Playing Movies")
             .font(.headline)
     }
     
@@ -41,7 +41,7 @@ struct TrendingMoviesView: View {
 
     @ViewBuilder
     var movieList: some View {
-        if let result = viewModel.trendingMovies?.results {
+        if let result = viewModel.nowPlayingMovies?.results {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(result, id: \.id) { movie in

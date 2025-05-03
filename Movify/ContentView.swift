@@ -13,14 +13,17 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Text("Home")
-                    .font(.title)
-                    .padding(.bottom, 16)
-                TrendingMoviesView()
-                Spacer()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Home")
+                        .font(.title)
+                        .foregroundStyle(.black)
+                    TrendingMoviesView()
+                    NowPlayingMoviesView()
+                    Spacer()
+                }
+                .padding(.horizontal, 16)
             }
-            .padding(.horizontal, 16)
         }
     }
 }

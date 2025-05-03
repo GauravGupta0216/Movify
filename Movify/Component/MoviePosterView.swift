@@ -23,8 +23,7 @@ struct MoviePosterView: View {
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
-        .padding(.horizontal, 8)
-        .frame(width: 150)
+        .frame(width: 125)
     }
 }
 
