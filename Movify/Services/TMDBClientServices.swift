@@ -8,29 +8,41 @@
 import Foundation
 import Combine
 
-final class TMDBClient {
+final class TMDBClient: TMDBService {
     private let apiKey = "YOUR_API_KEY"
     private let baseURL = URL(string: "https://api.themoviedb.org/3")!
     
-    func fetchTrending(page: Int = 1) -> AnyPublisher<MovieModel, Error> {
-        request(path: "/trending/movie/day", query: ["page": "\(page)"])
+    func fetchTrending(page: Int = 1) -> AnyPublisher<MoviesModel, Error> {
+        let path = "/trending/movie/day"
+        let query: [String: String] = ["language": "en-US"]
+        return request(path: path, query: query)
     }
-    
-    func fetchNowPlaying(page: Int = 1) -> AnyPublisher<MovieModel, Error> {
+
+    func fetchNowPlaying(page: Int = 1) -> AnyPublisher<MoviesModel, Error> {
         request(path: "/movie/now_playing", query: ["page": "\(page)"])
     }
     
-    func search(query: String, page: Int = 1) -> AnyPublisher<MovieModel, Error> {
-        request(path: "/search/movie", query: ["query": query, "page": "\(page)"])
-    }
-    
-    private func request<T: Decodable>(path: String, query: [String:String])
-    -> AnyPublisher<T, Error> {
-        var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
-        components.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
-        components.queryItems?.append(URLQueryItem(name: "api_key", value: apiKey))
-        let req = URLRequest(url: components.url!)
-        return URLSession.shared.dataTaskPublisher(for: req)
+    private func request<T: Decodable>(path: String, query: [String: String]) -> AnyPublisher<T, Error> {
+        let url = baseURL.appendingPathComponent(path)
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
+        
+        // Add query items
+        let queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+        components.queryItems = (components.queryItems ?? []) + queryItems
+        
+        guard let finalURL = components.url else {
+            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+        }
+        
+        var request = URLRequest(url: finalURL)
+        request.httpMethod = "GET"
+        request.timeoutInterval = 10
+        request.allHTTPHeaderFields = [
+            "accept": "application/json",
+            "Authorization": "Bearer " + apiKey
+        ]
+        
+        return URLSession.shared.dataTaskPublisher(for: request)
             .map(\.data)
             .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
