@@ -12,13 +12,11 @@ struct ContentView: View {
     @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
-        Text("Hello World")
-            .task {
-                do {
-                    try await homeViewModel.fetchTrendingMovies()
-                } catch {
-                    print(error)
-                }
-            }
+        VStack(alignment: .leading) {
+            Text("Home")
+                .font(.title)
+                .padding(.bottom, 16)
+            TrendingMoviesView()
+        }
     }
 }

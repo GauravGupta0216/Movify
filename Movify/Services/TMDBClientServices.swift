@@ -12,14 +12,16 @@ final class TMDBClient: TMDBService {
     private let apiKey = "YOUR_API_KEY"
     private let baseURL = URL(string: "https://api.themoviedb.org/3")!
     
-    func fetchTrending(page: Int = 1) -> AnyPublisher<MoviesModel, Error> {
+    func fetchTrending() -> AnyPublisher<MoviesModel, Error> {
         let path = "/trending/movie/day"
         let query: [String: String] = ["language": "en-US"]
         return request(path: path, query: query)
     }
 
-    func fetchNowPlaying(page: Int = 1) -> AnyPublisher<MoviesModel, Error> {
-        request(path: "/movie/now_playing", query: ["page": "\(page)"])
+    func fetchNowPlaying() -> AnyPublisher<MoviesModel, Error> {
+        let path = "/movie/now_playing"
+        let query: [String: String] = ["language": "en-US"]
+        return request(path: path, query: query)
     }
     
     private func request<T: Decodable>(path: String, query: [String: String]) -> AnyPublisher<T, Error> {
