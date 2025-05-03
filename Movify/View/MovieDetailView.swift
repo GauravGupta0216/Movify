@@ -14,7 +14,7 @@ struct MovieDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                MoviePosterView(movie: movie)
+                ImageLoaderView(urlString: movie.posterPath)
                 MovieTitleView(movie: movie)
                 MovieGenreView(movie: movie)
                 MovieOverviewView(movie: movie)
@@ -25,32 +25,6 @@ struct MovieDetailView: View {
         .safeAreaInset(edge: .bottom) {
             BookmarkButtonView(onBookmarkTapped: onBookmarkTapped)
         }
-    }
-}
-
-private struct MoviePosterView: View {
-    let movie: MovieModel
-
-    var body: some View {
-        AsyncImage(url: URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)")) { phase in
-            switch phase {
-            case .empty:
-                ProgressView()
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(10)
-            case .failure:
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 150)
-            @unknown default:
-                EmptyView()
-            }
-        }
-        .padding(.bottom)
     }
 }
 

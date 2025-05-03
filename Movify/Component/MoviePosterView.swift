@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PosterView: View {
+struct MoviePosterView: View {
     let title: String
     let poster: ImageLoaderView
 
@@ -23,11 +23,11 @@ struct PosterView: View {
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 8)
         .frame(width: 150)
     }
 }
 
 #Preview {
-    PosterView(title: "Dune: Part two", poster: ImageLoaderView(urlString: "DunePoster"))
+    MoviePosterView(title: "Dune: Part two", poster: ImageLoaderView(urlString: "DunePoster"))
 }

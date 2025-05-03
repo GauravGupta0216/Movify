@@ -36,7 +36,7 @@
 			membershipExceptions = (
 				Component/ImageLoaderView.swift,
 				Component/LoadingView.swift,
-				Component/PosterView.swift,
+				Component/MoviePosterView.swift,
 				ContentView.swift,
 				Helper/MovifyHelper.swift,
 				Helper/ScreenState.swift,

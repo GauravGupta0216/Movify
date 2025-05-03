@@ -20,10 +20,13 @@ struct ImageLoaderView: View {
             case .success(let image):
                 image
                     .resizable()
-                    .scaledToFit()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(10)
             case .failure:
-                Image("DunePoster")
+                Image(systemName: "photo")
                     .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 150)
             @unknown default:
                 EmptyView()
             }
