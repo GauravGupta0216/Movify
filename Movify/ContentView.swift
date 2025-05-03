@@ -12,11 +12,15 @@ struct ContentView: View {
     @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Home")
-                .font(.title)
-                .padding(.bottom, 16)
-            TrendingMoviesView()
+        NavigationView {
+            VStack(alignment: .leading) {
+                Text("Home")
+                    .font(.title)
+                    .padding(.bottom, 16)
+                TrendingMoviesView()
+                Spacer()
+            }
+            .padding(.horizontal, 16)
         }
     }
 }

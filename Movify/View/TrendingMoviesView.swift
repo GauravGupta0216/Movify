@@ -11,7 +11,7 @@ struct TrendingMoviesView: View {
     @StateObject var viewModel: TrendingMoviesViewModel = .init()
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             headerView
             switch viewModel.loadingState {
             case .idle:
@@ -43,12 +43,14 @@ struct TrendingMoviesView: View {
     var movieList: some View {
         if let result = viewModel.trendingMovies?.results {
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
+                HStack(alignment: .top) {
                     ForEach(result, id: \.id) { movie in
-                        MoviePosterView(
-                            title: movie.originalTitle,
-                            poster: ImageLoaderView(urlString: movie.posterPath)
-                        )
+                        NavigationLink(destination: MovieDetailView(movie: movie, onBookmarkTapped: {})) {
+                            PosterView(
+                                title: movie.originalTitle,
+                                poster: ImageLoaderView(urlString: movie.posterPath)
+                            )
+                        }
                     }
                 }
                 .padding(.horizontal)

@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MoviePosterView: View {
+struct PosterView: View {
     let title: String
     let poster: ImageLoaderView
 
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             poster
                 .frame(width: 100, height: 180)
                 .padding(.bottom, 8)
@@ -20,12 +20,14 @@ struct MoviePosterView: View {
                 .font(.headline)
                 .foregroundStyle(.black)
                 .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
         .padding(.horizontal, 16)
+        .frame(width: 150)
     }
 }
 
 #Preview {
-    MoviePosterView(title: "Dune: Part two", poster: ImageLoaderView(urlString: "DunePoster"))
+    PosterView(title: "Dune: Part two", poster: ImageLoaderView(urlString: "DunePoster"))
 }

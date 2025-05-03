@@ -36,8 +36,9 @@
 			membershipExceptions = (
 				Component/ImageLoaderView.swift,
 				Component/LoadingView.swift,
-				Component/MoviePosterView.swift,
+				Component/PosterView.swift,
 				ContentView.swift,
+				Helper/MovifyHelper.swift,
 				Helper/ScreenState.swift,
 				Mock/MockData.swift,
 				Model/MoviesModel.swift,
@@ -48,6 +49,7 @@
 				Services/MockTMDBClientServices.swift,
 				Services/TMDBClientServices.swift,
 				Services/TMDBServiceProtocol.swift,
+				View/MovieDetailView.swift,
 				View/TrendingMoviesView.swift,
 				ViewModel/HomeViewModel.swift,
 				ViewModel/TrendingMoviesViewModel.swift,

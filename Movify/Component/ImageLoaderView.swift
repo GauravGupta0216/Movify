@@ -9,10 +9,11 @@
 import SwiftUI
 
 struct ImageLoaderView: View {
+    let imageUrlPath: String = "https://image.tmdb.org/t/p/w500"
     let urlString: String
 
     var body: some View {
-        AsyncImage(url: URL(string: urlString)) { phase in
+        AsyncImage(url: URL(string: imageUrlPath + urlString)) { phase in
             switch phase {
             case .empty:
                 ProgressView()
