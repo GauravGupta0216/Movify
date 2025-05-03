@@ -11,7 +11,7 @@ struct MovifyHelper {
         case 28: return "Action"
         case 12: return "Adventure"
         case 878: return "Sci-Fi"
-        case 15: return "Thriller"
+        case 15, 18: return "Thriller"
         default: return "Fiction"
         }
     }

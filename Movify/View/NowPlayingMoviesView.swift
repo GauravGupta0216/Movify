@@ -42,8 +42,8 @@ struct NowPlayingMoviesView: View {
     @ViewBuilder
     var movieList: some View {
         if let result = viewModel.nowPlayingMovies?.results {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
+            ScrollView { // Vertical ScrollView
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 4) { // Adaptive Grid
                     ForEach(result, id: \.id) { movie in
                         NavigationLink(destination: MovieDetailView(movie: movie, onBookmarkTapped: {})) {
                             MoviePosterView(
@@ -51,9 +51,14 @@ struct NowPlayingMoviesView: View {
                                 poster: ImageLoaderView(urlString: movie.posterPath)
                             )
                         }
+                        .buttonStyle(.plain)
                     }
                 }
+                .padding()
             }
+        } else {
+            Text("No movies to display.")
+                .padding()
         }
     }
 }
