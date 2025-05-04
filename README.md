@@ -40,11 +40,7 @@ The bookmarks screen displays a list of movies that the user has bookmarked.
     cd movify
     open Movify.xcodeproj
     ```
-2. Install dependencies using CocoaPods:
-    ```bash
-    pod install
-    ```
-3. Build and run the app on a simulator or a physical device.
+2. Build and run the app on a simulator or a physical device.
 
 ## Technologies Used
 
