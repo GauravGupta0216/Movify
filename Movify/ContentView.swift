@@ -9,8 +9,6 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
-    
     var body: some View {
         NavigationView {
             ScrollView {

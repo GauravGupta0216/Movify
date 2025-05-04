@@ -52,7 +52,6 @@
 				View/MovieDetailView.swift,
 				View/NowPlayingMoviesView.swift,
 				View/TrendingMoviesView.swift,
-				ViewModel/HomeViewModel.swift,
 				ViewModel/NowPlayingMoviesViewModel.swift,
 				ViewModel/TrendingMoviesViewModel.swift,
 			);
