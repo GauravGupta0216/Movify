@@ -62,6 +62,7 @@
 				Screens/Search/SearchViewModel.swift,
 				Services/MockDataLoader.swift,
 				Services/MockTMDBClientServices.swift,
+				Services/NetworkServices.swift,
 				Services/TMDBClientServices.swift,
 				Services/TMDBServiceProtocol.swift,
 			);

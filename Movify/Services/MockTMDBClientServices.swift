@@ -4,7 +4,6 @@
 //
 //  Created by Gaurav Kumar on 04/05/25.
 //
-//  MockTMDBClient.swift
 
 import Combine
 import Foundation
@@ -12,16 +11,16 @@ import Foundation
 final class MockTMDBClient: TMDBService {
     let mockData = MockData()
 
-    func fetchTrending() -> AnyPublisher<MoviesModel, Error> {
-        return Future<MoviesModel, Error> { promise in
+    func fetchTrending() -> AnyPublisher<MoviesModel, NetworkError> {
+        return Future<MoviesModel, NetworkError> { promise in
             let trendingMovies: MoviesModel = self.mockData.load("trending.json")
             promise(.success(trendingMovies))
         }
         .eraseToAnyPublisher()
     }
 
-    func fetchNowPlaying() -> AnyPublisher<MoviesModel, Error> {
-        return Future<MoviesModel, Error> { promise in
+    func fetchNowPlaying() -> AnyPublisher<MoviesModel, NetworkError> {
+        return Future<MoviesModel, NetworkError> { promise in
             let nowPlayingMovies: MoviesModel = self.mockData.load("now_playing.json")
             promise(.success(nowPlayingMovies))
         }

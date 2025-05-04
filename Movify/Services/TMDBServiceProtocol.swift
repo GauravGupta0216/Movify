@@ -8,6 +8,6 @@
 import Combine
 
 protocol TMDBService {
-    func fetchTrending() -> AnyPublisher<MoviesModel, Error>
-    func fetchNowPlaying() -> AnyPublisher<MoviesModel, Error>
+    func fetchTrending() -> AnyPublisher<MoviesModel, NetworkError>
+    func fetchNowPlaying() -> AnyPublisher<MoviesModel, NetworkError>
 }

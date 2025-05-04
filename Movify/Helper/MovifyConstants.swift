@@ -24,4 +24,10 @@ struct MovifyConstants {
     static let heartFill = "heart.fill"
     static let heart = "heart"
     static let houseFill = "house.fill"
+    
+    // MARK: - URL/Path
+    static let tmdbBaseUrl = "https://api.themoviedb.org/3"
+    static let imageURLPath = "https://image.tmdb.org/t/p/w500"
+    static let trendingMoviePath = "/trending/movie/day"
+    static let nowPlayingPath = "/movie/now_playing"
 }
