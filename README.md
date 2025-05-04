@@ -20,6 +20,14 @@ Movify is an iOS application that allows users to explore trending and now-playi
     ```
 2. Build and run the app on a simulator or a physical device.
 
+## MovifyMock Target
+
+If you experience any network issues or the TMDb API is not working, you can use the **MovifyMock** target. This target runs the app with mock data, allowing you to explore all features without relying on live API responses.
+
+To use MovifyMock:
+1. In Xcode, select the **MovifyMock** scheme from the scheme selector at the top of the window.
+2. Build and run the app as usual.
+
 ## Technologies Used
 
 - **Swift**: The programming language used to build the app.

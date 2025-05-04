@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ProgressView()
-            .tint(Color.white)
+            .tint(Color.black)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
