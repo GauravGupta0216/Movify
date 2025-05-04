@@ -8,50 +8,31 @@
 import SwiftUI
 
 struct BookmarksView: View {
-    @State private var bookmarkedMovies: [BookmarkedMovie] = []
+    @StateObject var viewModel: BookmarkViewModel = .init()
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(bookmarkedMovies, id: \.id) { movie in
-                    BookmarkRow(movie: movie)
+            VStack(alignment: .leading) {
+                HeaderView(header: "Bookmarks")
+                List {
+                    ForEach(viewModel.bookmarkedMovies, id: \.id) { movie in
+                        BookmarkRow(movie: viewModel.convertToMovieModel(movie: movie))
+                    }
                 }
             }
-            .navigationTitle("Bookmarks")
-            .onAppear {
-                fetchBookmarks()
-            }
+            .padding(.horizontal)
         }
-    }
-
-    func fetchBookmarks() {
-        bookmarkedMovies = CoreDataManager.shared.fetchBookmarkedMovies()
     }
 }
 
 struct BookmarkRow: View {
-    let movie: BookmarkedMovie
+    let movie: MovieModel
 
     var body: some View {
-        NavigationLink(destination: MovieDetailView(movie: convertToMovieModel(movie: movie))) {
+        NavigationLink(destination: MovieDetailView(movie: movie)) {
             HStack {
-                ImageLoaderView(urlString: movie.posterPath ?? "")
-                    .frame(width: 50, height: 75)
-                Text(movie.title ?? "Unknown")
+                MovieRowView(movie: movie)
             }
         }
-    }
-
-    private func convertToMovieModel(movie: BookmarkedMovie) -> MovieModel {
-        return MovieModel(
-            genreIds: movie.genreIds as? [Int] ?? [],
-            id: Int(movie.id),
-            originalLanguage: movie.originalLanguage ?? "en",
-            originalTitle: movie.originalTitle ?? "Unknown",
-            overview: movie.overview ?? "No overview available",
-            posterPath: movie.posterPath ?? "",
-            releaseDate: movie.releaseDate ?? "Unknown",
-            title: movie.title ?? "Unknown"
-        )
     }
 }

@@ -34,9 +34,11 @@
 		F450088D2DC69AF200C6F76D /* Exceptions for "Movify" folder in "MovifyMock" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Component/HeaderView.swift,
 				Component/ImageLoaderView.swift,
 				Component/LoadingView.swift,
 				Component/MoviePosterView.swift,
+				Component/MovieRow.swift,
 				ContentView.swift,
 				CoreDataManager.swift,
 				Helper/MovifyHelper.swift,
@@ -55,7 +57,9 @@
 				View/HomeView.swift,
 				View/MovieDetailView.swift,
 				View/NowPlayingMoviesView.swift,
+				View/SearchView.swift,
 				View/TrendingMoviesView.swift,
+				ViewModel/BookmarkViewModel.swift,
 				ViewModel/NowPlayingMoviesViewModel.swift,
 				ViewModel/TrendingMoviesViewModel.swift,
 			);

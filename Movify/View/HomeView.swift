@@ -12,7 +12,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    header
+                    HeaderView(header: "Home")
                     TrendingMoviesView()
                     NowPlayingMoviesView()
                     Spacer()
@@ -21,13 +21,5 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
         }
-    }
-
-    var header: some View {
-        Text("Home")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-            .foregroundStyle(.black)
-            .padding(.top)
     }
 }

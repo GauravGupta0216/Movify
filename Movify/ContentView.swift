@@ -28,9 +28,3 @@ struct ContentView: View {
         }
     }
 }
-
-struct SearchView: View {
-    var body: some View {
-        Text("Search View Content")
-    }
-}
