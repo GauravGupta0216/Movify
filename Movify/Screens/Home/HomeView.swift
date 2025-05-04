@@ -12,7 +12,7 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    HeaderView(header: "Home")
+                    HeaderView(header: MovifyConstants.homeHeader)
                     TrendingMoviesView()
                     NowPlayingMoviesView()
                     Spacer()

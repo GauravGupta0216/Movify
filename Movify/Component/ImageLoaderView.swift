@@ -23,7 +23,7 @@ struct ImageLoaderView: View {
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(10)
             case .failure:
-                Image(systemName: "photo")
+                Image(systemName: MovifyConstants.photo)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 150)

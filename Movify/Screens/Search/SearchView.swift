@@ -13,7 +13,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                HeaderView(header: "Search")
+                HeaderView(header: MovifyConstants.searchHeader)
                 switch viewModel.loadingState {
                 case .idle:
                     Color.white.onAppear {
@@ -35,9 +35,9 @@ struct SearchView: View {
     var movieList: some View {
         VStack {
             HStack {
-                Image(systemName: "magnifyingglass")
+                Image(systemName: MovifyConstants.magnifyingglass)
                     .foregroundColor(.gray)
-                TextField("Search", text: $viewModel.searchText)
+                TextField(MovifyConstants.searchHeader, text: $viewModel.searchText)
                     .autocapitalization(.none)
             }
             .padding(8)
@@ -58,7 +58,7 @@ struct SearchView: View {
     }
 
     var errorView: some View {
-        Text("Sorry, some error from our end. Please try again later.")
+        Text(MovifyConstants.sorryError)
             .font(.caption)
             .foregroundColor(.red)
     }

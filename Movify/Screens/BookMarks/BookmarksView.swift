@@ -13,7 +13,7 @@ struct BookmarksView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                HeaderView(header: "Bookmarks")
+                HeaderView(header: MovifyConstants.bookmarksHeader)
                 List {
                     ForEach(viewModel.bookmarkedMovies, id: \.id) { movie in
                         MovieRowView(movie: viewModel.convertToMovieModel(movie: movie))

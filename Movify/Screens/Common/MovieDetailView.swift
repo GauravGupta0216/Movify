@@ -93,7 +93,7 @@ private struct MovieOverviewView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Overview")
+            Text(MovifyConstants.overview)
                 .font(.title2)
                 .fontWeight(.semibold)
                 .padding(.bottom, 5)
@@ -117,7 +117,7 @@ private struct BookmarkButtonView: View {
             Button {
                 onBookmarkTapped()
             } label: {
-                Image(systemName: isBookmarked ? "heart.fill" : "heart")
+                Image(systemName: isBookmarked ? MovifyConstants.heartFill : MovifyConstants.heart)
                     .font(.title2)
                     .padding()
                     .background(.gray.opacity(0.2))

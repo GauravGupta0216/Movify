@@ -13,17 +13,17 @@ struct ContentView: View {
         TabView {
             HomeView()
                 .tabItem {
-                    Label("Home", systemImage: "house.fill")
+                    Label(MovifyConstants.homeHeader, systemImage: MovifyConstants.houseFill)
                 }
 
             SearchView()
                 .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
+                    Label(MovifyConstants.searchHeader, systemImage: MovifyConstants.magnifyingglass)
                 }
 
             BookmarksView()
                 .tabItem {
-                    Label("Bookmarks", systemImage: "heart.fill")
+                    Label(MovifyConstants.bookmarksHeader, systemImage: MovifyConstants.heartFill)
                 }
         }
     }

@@ -40,6 +40,7 @@
 				ContentView.swift,
 				CoreData/CoreDataManager.swift,
 				CoreData/MovifyDataModel.xcdatamodeld,
+				Helper/MovifyConstants.swift,
 				Helper/MovifyHelper.swift,
 				Helper/ScreenState.swift,
 				Model/MoviesModel.swift,

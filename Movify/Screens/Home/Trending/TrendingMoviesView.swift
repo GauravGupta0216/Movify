@@ -29,12 +29,12 @@ struct TrendingMoviesView: View {
     }
     
     var headerView: some View {
-        Text("Trending Movies")
+        Text(MovifyConstants.trendingMovies)
             .font(.headline)
     }
     
     var errorView: some View {
-        Text("Sorry, some error from our end. Please try again later.")
+        Text(MovifyConstants.sorryError)
             .font(.caption)
             .foregroundColor(.red)
     }
