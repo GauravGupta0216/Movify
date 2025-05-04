@@ -9,8 +9,14 @@ import SwiftUI
 
 struct MovieRowView: View {
     let movie: MovieModel
-    
+
     var body: some View {
+        NavigationLink(destination: MovieDetailView(movie: movie)) {
+            movieView
+        }
+    }
+
+    var movieView: some View {
         HStack {
             ImageLoaderView(urlString: movie.posterPath)
                 .frame(width: 50, height: 75)
@@ -19,6 +25,7 @@ struct MovieRowView: View {
             VStack(alignment: .leading) {
                 Text(movie.title)
                     .font(.headline)
+                    .foregroundStyle(.black)
                 Text(String(movie.releaseDate))
                     .font(.subheadline)
                     .foregroundColor(.gray)

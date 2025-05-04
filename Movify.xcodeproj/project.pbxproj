@@ -58,6 +58,7 @@
 				Screens/Home/Trending/TrendingMoviesView.swift,
 				Screens/Home/Trending/TrendingMoviesViewModel.swift,
 				Screens/Search/SearchView.swift,
+				Screens/Search/SearchViewModel.swift,
 				Services/MockDataLoader.swift,
 				Services/MockTMDBClientServices.swift,
 				Services/TMDBClientServices.swift,

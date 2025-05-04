@@ -8,16 +8,36 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
-    @State private var allMovies: [MovieModel] = []
-    
+    @StateObject var viewModel: SearchViewModel = .init()
+
     var body: some View {
-        VStack(alignment: .leading) {
-            HeaderView(header: "Search")
+        NavigationView {
+            VStack(alignment: .leading) {
+                HeaderView(header: "Search")
+                switch viewModel.loadingState {
+                case .idle:
+                    Color.white.onAppear {
+                        viewModel.getNowPlayingMovies()
+                    }
+                case .loading:
+                    LoadingView()
+                case .loaded:
+                    movieList
+                case .failed:
+                    errorView
+                }
+                
+            }
+            .padding(.horizontal)
+        }
+    }
+
+    var movieList: some View {
+        VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
-                TextField("Search", text: $searchText)
+                TextField("Search", text: $viewModel.searchText)
                     .autocapitalization(.none)
             }
             .padding(8)
@@ -29,22 +49,18 @@ struct SearchView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     // Filtered Movies
-                    ForEach(filteredMovies, id: \.id) { movie in
+                    ForEach(viewModel.filteredMovies, id: \.id) { movie in
                         MovieRowView(movie: movie)
                     }
                 }
             }
         }
-        .padding(.horizontal)
     }
 
-    // Computed property for filtered movies
-    var filteredMovies: [MovieModel] {
-        if searchText.isEmpty {
-            return allMovies
-        } else {
-            return allMovies.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
-        }
+    var errorView: some View {
+        Text("Sorry, some error from our end. Please try again later.")
+            .font(.caption)
+            .foregroundColor(.red)
     }
 }
 

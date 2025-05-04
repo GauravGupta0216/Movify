@@ -16,7 +16,7 @@ struct BookmarksView: View {
                 HeaderView(header: "Bookmarks")
                 List {
                     ForEach(viewModel.bookmarkedMovies, id: \.id) { movie in
-                        BookmarkRow(movie: viewModel.convertToMovieModel(movie: movie))
+                        MovieRowView(movie: viewModel.convertToMovieModel(movie: movie))
                     }
                 }
             }
@@ -24,18 +24,6 @@ struct BookmarksView: View {
                 viewModel.fetchBookmarks()
             }
             .padding(.horizontal)
-        }
-    }
-}
-
-struct BookmarkRow: View {
-    let movie: MovieModel
-
-    var body: some View {
-        NavigationLink(destination: MovieDetailView(movie: movie)) {
-            HStack {
-                MovieRowView(movie: movie)
-            }
         }
     }
 }
