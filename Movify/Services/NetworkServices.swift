@@ -24,7 +24,12 @@ class NetworkService {
 
     private init() {}
 
-    func request<T: Decodable>(path: String, query: [String: String]) -> AnyPublisher<T, NetworkError> {
+    func request<T: Decodable>(
+        path: String,
+        method: String = "GET",
+        query: [String: String] = [:],
+        headers: [String: String] = [:]
+    ) -> AnyPublisher<T, NetworkError> {
         let url = baseURL.appendingPathComponent(path)
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         
@@ -37,12 +42,12 @@ class NetworkService {
         }
         
         var request = URLRequest(url: finalURL)
-        request.httpMethod = "GET"
+        request.httpMethod = method
         request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
             "accept": "application/json",
             "Authorization": "Bearer " + apiKey
-        ]
+        ].merging(headers) { (_, new) in new }
 
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { data, response in

@@ -34,17 +34,17 @@
 		F450088D2DC69AF200C6F76D /* Exceptions for "Movify" folder in "MovifyMock" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				App/ContentView.swift,
+				App/MovifyApp.swift,
 				Component/HeaderView.swift,
 				Component/ImageLoaderView.swift,
 				Component/LoadingView.swift,
-				ContentView.swift,
 				CoreData/CoreDataManager.swift,
 				CoreData/MovifyDataModel.xcdatamodeld,
 				Helper/MovifyConstants.swift,
 				Helper/MovifyHelper.swift,
 				Helper/ScreenState.swift,
 				Model/MoviesModel.swift,
-				MovifyApp.swift,
 				Resources/Assets.xcassets,
 				Resources/MockFiles/now_playing.json,
 				Resources/MockFiles/trending.json,
@@ -609,7 +609,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TBVU37NRUM;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MovifyTests;
@@ -628,7 +629,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TBVU37NRUM;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MovifyTests;
@@ -646,7 +648,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TBVU37NRUM;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MovifyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -663,7 +666,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = TBVU37NRUM;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.personal.MovifyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
