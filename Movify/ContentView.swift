@@ -10,18 +10,27 @@ import Combine
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("Home")
-                        .font(.title)
-                        .foregroundStyle(.black)
-                    TrendingMoviesView()
-                    NowPlayingMoviesView()
-                    Spacer()
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house.fill")
                 }
-                .padding(.horizontal, 16)
-            }
+
+            SearchView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+
+            BookmarksView()
+                .tabItem {
+                    Label("Bookmarks", systemImage: "heart.fill")
+                }
         }
+    }
+}
+
+struct SearchView: View {
+    var body: some View {
+        Text("Search View Content")
     }
 }

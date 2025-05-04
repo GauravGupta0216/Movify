@@ -45,7 +45,7 @@ struct NowPlayingMoviesView: View {
             ScrollView { // Vertical ScrollView
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 120))], spacing: 4) { // Adaptive Grid
                     ForEach(result, id: \.id) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie, onBookmarkTapped: {})) {
+                        NavigationLink(destination: MovieDetailView(movie: movie)) {
                             MoviePosterView(
                                 title: movie.originalTitle,
                                 poster: ImageLoaderView(urlString: movie.posterPath)

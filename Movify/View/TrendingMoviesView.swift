@@ -45,7 +45,7 @@ struct TrendingMoviesView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     ForEach(result, id: \.id) { movie in
-                        NavigationLink(destination: MovieDetailView(movie: movie, onBookmarkTapped: {})) {
+                        NavigationLink(destination: MovieDetailView(movie: movie)) {
                             MoviePosterView(
                                 title: movie.originalTitle,
                                 poster: ImageLoaderView(urlString: movie.posterPath)

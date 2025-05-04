@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MovieDetailView: View {
+    @State private var isBookmarked: Bool = false
     let movie: MovieModel
-    var onBookmarkTapped: () -> Void
 
     var body: some View {
         ScrollView {
@@ -23,7 +24,29 @@ struct MovieDetailView: View {
             .padding()
         }
         .safeAreaInset(edge: .bottom) {
-            BookmarkButtonView(onBookmarkTapped: onBookmarkTapped)
+            BookmarkButtonView(isBookmarked: isBookmarked, onBookmarkTapped: {
+                if isBookmarked {
+                    CoreDataManager.shared.deleteMovie(movieID: movie.id)
+                } else {
+                    CoreDataManager.shared.saveMovie(movie: movie)
+                }
+                isBookmarked.toggle()
+            })
+            .onAppear {
+                checkIfMovieIsBookmarked()
+            }
+        }
+    }
+    
+    private func checkIfMovieIsBookmarked() {
+        let fetchRequest: NSFetchRequest<BookmarkedMovie> = BookmarkedMovie.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %d", Int32(movie.id))
+        
+        do {
+            let results = try CoreDataManager.shared.container.viewContext.fetch(fetchRequest)
+            isBookmarked = !results.isEmpty
+        } catch {
+            print("Failed to check bookmark status: \(error)")
         }
     }
 }
@@ -85,6 +108,7 @@ private struct MovieOverviewView: View {
 }
 
 private struct BookmarkButtonView: View {
+    let isBookmarked: Bool
     var onBookmarkTapped: () -> Void
 
     var body: some View {
@@ -93,7 +117,7 @@ private struct BookmarkButtonView: View {
             Button {
                 onBookmarkTapped()
             } label: {
-                Image(systemName: "heart")
+                Image(systemName: isBookmarked ? "heart.fill" : "heart")
                     .font(.title2)
                     .padding()
                     .background(.gray.opacity(0.2))
@@ -105,7 +129,14 @@ private struct BookmarkButtonView: View {
 }
 
 #Preview {
-    MovieDetailView(movie: MovieModel(adult: false, backdropPath: "/fTrQsdMS2MUw00RnzH0r3JWHhts.jpg", genreIds: [28, 12, 878], id: 1197306, originalLanguage: "en", originalTitle: "A Working Man", overview: "Levon Cade left behind a decorated military career in the black ops to live a simple life working construction. But when his boss's daughter, who is like family to him, is taken by human traffickers, his search to bring her home uncovers a world of corruption far greater than he ever could have imagined.", popularity: 633.0389, posterPath: "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg", releaseDate: "2025-03-26", title: "A Working Man", video: false, voteAverage: 6.4, voteCount: 477), onBookmarkTapped: {
-        print("Bookmark Tapped")
-    })
+    MovieDetailView(movie: MovieModel(
+        genreIds: [28, 12, 878],
+        id: 1197306,
+        originalLanguage: "en",
+        originalTitle: "A Working Man",
+        overview: "Levon Cade left behind a decorated military career in the black ops to live a simple life working construction. But when his boss's daughter, who is like family to him, is taken by human traffickers, his search to bring her home uncovers a world of corruption far greater than he ever could have imagined.",
+        posterPath: "/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
+        releaseDate: "2025-03-26",
+        title: "A Working Man")
+    )
 }
