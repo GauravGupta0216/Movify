@@ -10,10 +10,6 @@ import Foundation
 final class BookmarkViewModel: ObservableObject {
     @Published var bookmarkedMovies: [BookmarkedMovie] = []
 
-    init() {
-        fetchBookmarks()
-    }
-
     func fetchBookmarks() {
         bookmarkedMovies = CoreDataManager.shared.fetchBookmarkedMovies()
     }

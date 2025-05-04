@@ -20,6 +20,9 @@ struct BookmarksView: View {
                     }
                 }
             }
+            .onAppear {
+                viewModel.fetchBookmarks()
+            }
             .padding(.horizontal)
         }
     }
